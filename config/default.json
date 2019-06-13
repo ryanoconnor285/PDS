@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://ryan:America123@cluster0-tipfd.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "secretorKey"
+}
