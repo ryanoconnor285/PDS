@@ -13,19 +13,17 @@ import { UserProvider } from "./context/UserContext";
 function App() {
   return (
     <Router>
-      <React.Fragment>
-        <UserProvider>
-          <PatientProvider>
-            <Navbar />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-            </Switch>
-          </PatientProvider>
-        </UserProvider>
-      </React.Fragment>
+      <UserProvider>
+        <PatientProvider>
+          <Navbar />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Switch>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </PatientProvider>
+      </UserProvider>
     </Router>
   );
 }
