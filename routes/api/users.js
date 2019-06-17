@@ -19,6 +19,7 @@ router.post('/register', [
   check('firstName', 'First Name is required').not().isEmpty(),
   check('lastName', 'Last Name is required').not().isEmpty(),
   check('email', 'Email is required').isEmail(),
+  check('role', 'Role is required').not().isEmpty(),
   check('password', 'Password must be at least 6 characters').isLength( {min: 6} ),
 ], async (req, res) => {
   const errors = validationResult(req);
@@ -26,7 +27,7 @@ router.post('/register', [
     return res.status(400).json({ errors: errors.array() })
   }
   
-  const { firstName, lastName, email, password } = req.body
+  const { firstName, lastName, email, role, password } = req.body
 
   try {
     let user = await User.findOne({ email })
@@ -38,6 +39,7 @@ router.post('/register', [
       firstName,
       lastName,
       email,
+      role,
       password
     })
 
@@ -49,7 +51,7 @@ router.post('/register', [
 
     const payload = {
       user: {
-        id: user.id
+        role: user.role
       }
     }
 
