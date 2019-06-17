@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { registerUser } from '../../actions/authActions';
+
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -36,6 +38,7 @@ function Register() {
     firstName,
     lastName,
     email,
+    role,
     confirmEmail,
     password,
     confirmPassword
@@ -48,7 +51,9 @@ function Register() {
     if (confirmPassword !== password) {
       console.log("Passwords do not match");
     } else if (confirmEmail !== email) {
-      console.log(formData);
+      console.log("Confirm email does not match");
+    } else {
+      registerUser({ firstName, lastName, email, role, password })
     }
   };
 
@@ -100,6 +105,16 @@ function Register() {
         />
         <TextField
           required
+          id="filled-role"
+          label="Role"
+          name="role"
+          className={classes.textField}
+          onChange={handleChange}
+          margin="normal"
+          variant="filled"
+        />
+        <TextField
+          required
           id="filled-password"
           label="Password"
           name="password"
@@ -117,16 +132,6 @@ function Register() {
           name="confirmPassword"
           type="password"
           autoComplete="current-password"
-          className={classes.textField}
-          onChange={handleChange}
-          margin="normal"
-          variant="filled"
-        />
-        <TextField
-          required
-          id="filled-role"
-          label="Role"
-          name="role"
           className={classes.textField}
           onChange={handleChange}
           margin="normal"
